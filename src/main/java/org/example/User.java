@@ -45,4 +45,10 @@ public class User {
             throw new RuntimeException(e);
         }
     }
+
+    public void addAccount(Account account) {
+        this.accounts.add(account);
+    }
+
+    
 }
