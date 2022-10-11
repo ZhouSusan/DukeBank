@@ -32,4 +32,8 @@ public class User {
 
         System.out.printf("A new user has been created successfully.\n%s, %s with ID# %s");
     }
+
+    public String getUUID() {
+        return this.uuid;
+    }
 }
