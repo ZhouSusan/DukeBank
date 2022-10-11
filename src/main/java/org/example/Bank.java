@@ -1,5 +1,6 @@
 package org.example;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Bank {
     private String name;
@@ -10,5 +11,10 @@ public class Bank {
         this.name = "Duke Bank";
         this.users = new ArrayList<User>();
         this.accounts = new ArrayList<Account>();
+    }
+
+    public String getNewUserUUID() {
+        String uuid;
+        Random rand = new Random;
     }
 }
