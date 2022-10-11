@@ -14,4 +14,8 @@ public class Account {
         this.uuid = dukeBank.getNewAccountUUID();
         this.transactions = new ArrayList<Transaction>();
     }
+
+    public String getUUID() {
+        return this.uuid;
+    }
 }
