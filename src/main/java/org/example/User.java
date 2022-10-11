@@ -36,4 +36,23 @@ public class User {
     public String getUUID() {
         return this.uuid;
     }
+
+    public boolean validatePinNumber (String pinNumber) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            return MessageDigest.isEqual(md.digest(pinNumber.getBytes()), this.pinEncypt);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void addAccount(Account account) {
+        this.accounts.add(account);
+    }
+
+    public String getFullName() {
+        return this.firstName + " " + this.lastName;
+    }
+
+    
 }
