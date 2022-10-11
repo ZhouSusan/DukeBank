@@ -38,4 +38,30 @@ public class Bank {
         
         return uuid;
     }
+
+    public String getNewAccountUUID() {
+        String accountUUID;
+        Random rand = new Random();
+        int len = 12;
+        boolean isIdUnique;
+
+        //keep looping until we get a unique Id
+        do {
+            accountUUID = "";
+            for (int i = 0; i < len; i++) {
+                accountUUID += ((Integer)rand.nextInt(10)).toString();
+            }
+
+            //check to see if the user's id is unique
+            isIdUnique = false;
+            for (Account a : this.accounts) {
+                if (accountUUID.compareTo(a.getUUID()) == 0) {
+                    isIdUnique = true;
+                    break;
+                }
+            }
+        } while(isIdUnique);
+
+        return accountUUID;
+    }
 }
