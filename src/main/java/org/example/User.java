@@ -50,5 +50,9 @@ public class User {
         this.accounts.add(account);
     }
 
+    public String getFullName() {
+        return this.firstName + " " + this.lastName;
+    }
+
     
 }
