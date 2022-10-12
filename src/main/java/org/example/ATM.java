@@ -74,4 +74,35 @@ public class ATM {
 
         currUser.printAccountTransactionHistory(thisAccount);
     }
+
+    public static void depositFund(User currUser, Scanner scan) {
+        int toAccount;
+        double amount;
+        double accountBalance;
+        String memo;
+
+        do {
+            System.out.printf("Enter the number (1-d%) of the accounts\n to deposit in: ", currUser.numAccounts());
+            toAccount = scan.nextInt();
+            if (toAccount < 0 || toAccount > currUser.numAccounts()) {
+                System.out.println("Invalid account. Please try again.");
+            }
+        } while(toAccount < 0 || toAccount > currUser.numAccounts());
+
+        accountBalance = currUser.getAccountBalance(toAccount);
+
+        do {
+            System.out.printf("Enter the amount to deposit in (maximum $%.02f)", accountBalance);
+            amount = scan.nextDouble();
+            if (amount < 0) {
+                System.out.println("Something went wrong. Amount must be greater than zero.");
+            }
+        } while (amount < 0);
+
+        scan.nextLine();
+        System.out.print("Enter a memo for this transaction: ");
+        memo = scan.nextLine();
+
+        currUser.addAccountTransaction(toAccount, amount, memo);
+    }
 }
