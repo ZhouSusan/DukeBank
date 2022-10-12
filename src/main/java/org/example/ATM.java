@@ -105,4 +105,50 @@ public class ATM {
 
         currUser.addAccountTransaction(toAccount, amount, memo);
     }
+
+    public static void transferFunds(User currUser, Scanner scan) {
+        int fromAccount;
+        int toAccount;
+        double amount;
+        double accountBal;
+
+        //get account to transfer from
+        do {
+            System.out.printf("Enter the number (1- %d) of the account\n to transfer from :", currUser.numAccounts());
+            fromAccount = scan.nextInt()-1;
+            if (fromAccount < 0 || fromAccount >= currUser.numAccounts()) {
+                System.out.println("Invalid account. Please try again.");
+            }
+        } while(fromAccount < 0 || fromAccount >= currUser.numAccounts());
+
+        accountBal = currUser.getAccountBalance(fromAccount);
+
+        //get the account to transfer to
+        do {
+            System.out.printf("Enter the number (1- %d) of the account\n to transfer to :", currUser.numAccounts());
+            toAccount = scan.nextInt()-1;
+            if (toAccount < 0 || toAccount >= currUser.numAccounts()) {
+                System.out.println("Invalid account. Please try again.");
+            }
+        } while (toAccount < 0 || toAccount >= currUser.numAccounts());
+
+        //get the amount transfer
+        do {
+            System.out.printf("Enter the amount to transfer " +
+                    "(maximum $%.02f): $", accountBal);
+            amount = scan.nextDouble();
+            if (amount < 0) {
+                System.out.println("Amount must be greater than zero.");
+            } else if (amount > accountBal) {
+                System.out.printf("Amount must not be greater than\n " +
+                        "balance of $%.02f.\n", accountBal);
+            }
+        } while (amount < 0 || amount > accountBal);
+
+        //transfer
+        currUser.addAccountTransaction(fromAccount, -1*amount, String.format(
+                "Transfer to account %s", currUser.getAccountUUID(toAccount)));
+        currUser.addAccountTransaction(toAccount, amount, String.format(
+                "Transferred from account %s", currUser.getAccountUUID(fromAccount)));
+    }
 }

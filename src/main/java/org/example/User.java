@@ -77,4 +77,8 @@ public class User {
     public void addAccountTransaction(int accountIdx, double amount, String memo) {
         this.accounts.get(accountIdx).addTransaction(amount, memo);
     }
+
+    public String getAccountUUID(int accountIdx) {
+        return this.accounts.get(accountIdx).getUUID();
+    }
 }
