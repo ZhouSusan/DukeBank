@@ -116,7 +116,7 @@ public class ATM {
         accountBalance = currUser.getAccountBalance(toAccount);
 
         do {
-            System.out.printf("Enter the amount to deposit in (maximum $%.02f)", accountBalance);
+            System.out.printf("Enter the amount to deposit in (maximum $%.02f): $", accountBalance);
             amount = scan.nextDouble();
             if (amount < 0) {
                 System.out.println("Something went wrong. Amount must be greater than zero.");
@@ -137,7 +137,7 @@ public class ATM {
         String memo;
 
         do {
-            System.out.printf("Enter the number (1-%d) of the accounts\n to withdraw from: ", currUser.numAccounts());
+            System.out.printf("Enter the number (1- %d) of the accounts\n to withdraw from: ", currUser.numAccounts());
             fromAccount = scan.nextInt()-1;
             if (fromAccount < 0 || fromAccount >= currUser.numAccounts()) {
                 System.out.println("Invalid account. Please try again.");
@@ -147,7 +147,7 @@ public class ATM {
         accountBalance = currUser.getAccountBalance(fromAccount);
 
         do {
-            System.out.printf("Enter the amount to withdraw from: (maximum $%.02f)", accountBalance);
+            System.out.printf("Enter the amount to withdraw from: (maximum $%.02f) :$", accountBalance);
             amount = scan.nextDouble();
             if (amount < 0) {
                 System.out.println("Something went wrong. Amount must be greater than zero.");
@@ -155,7 +155,7 @@ public class ATM {
                 System.out.printf("Amount must not be greater than\n " +
                         "balance of $%.02f.\n", accountBalance);
             }
-        } while (amount < 0);
+        } while (amount < 0 || amount > accountBalance);
 
         scan.nextLine();
         System.out.print("Enter a memo for this transaction: ");
