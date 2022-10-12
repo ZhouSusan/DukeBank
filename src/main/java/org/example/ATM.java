@@ -65,10 +65,10 @@ public class ATM {
                 ATM.showTransactionHistory(currUser, scan);
                 break;
             case 2:
-                ATM.withdrawFunds(currUser, scan);
+                ATM.depositFunds(currUser, scan);
                 break;
             case 3:
-                ATM.depositFunds(currUser, scan);
+                ATM.withdrawFunds(currUser, scan);
                 break;
             case 4:
                 ATM.transferFunds(currUser, scan);
@@ -106,8 +106,8 @@ public class ATM {
         String memo;
 
         do {
-            System.out.printf("Enter the number (1-d%) of the accounts\n to deposit in: ", currUser.numAccounts());
-            toAccount = scan.nextInt();
+            System.out.printf("Enter the number (1-%d) of the accounts\n to deposit in: ", currUser.numAccounts());
+            toAccount = scan.nextInt()-1;
             if (toAccount < 0 || toAccount >= currUser.numAccounts()) {
                 System.out.println("Invalid account. Please try again.");
             }
@@ -137,8 +137,8 @@ public class ATM {
         String memo;
 
         do {
-            System.out.printf("Enter the number (1-d%) of the accounts\n to deposit in: ", currUser.numAccounts());
-            fromAccount = scan.nextInt();
+            System.out.printf("Enter the number (1-%d) of the accounts\n to withdraw from: ", currUser.numAccounts());
+            fromAccount = scan.nextInt()-1;
             if (fromAccount < 0 || fromAccount >= currUser.numAccounts()) {
                 System.out.println("Invalid account. Please try again.");
             }
