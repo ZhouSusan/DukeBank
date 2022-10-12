@@ -82,4 +82,18 @@ public class Bank {
         return newUser;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
+    public User userLogin(String userUUID, String pinNumber) {
+
+        for (User user : this.users) {
+            if (user.getUUID().compareTo(userUUID) == 0 && user.validatePinNumber(pinNumber)) {
+                return user;
+            }
+        }
+
+        return null;
+    }
 }
