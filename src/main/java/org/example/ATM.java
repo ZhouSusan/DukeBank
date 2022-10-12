@@ -15,6 +15,7 @@ public class ATM {
         User currentUser;
         while( true) {
             currentUser = ATM.mainMenuPrompt(dukeBank, scan);
+            ATM.printUserMenu(currentUser,scan);
         }
     }
 
@@ -58,6 +59,29 @@ public class ATM {
                 System.out.println("Invalid choice. Please choose a number between 1 - 5");
             }
         } while (userChoice <1 || userChoice > 5);
+
+        switch(userChoice) {
+            case 1:
+                ATM.showTransactionHistory(currUser, scan);
+                break;
+            case 2:
+                ATM.withdrawFunds(currUser, scan);
+                break;
+            case 3:
+                ATM.depositFunds(currUser, scan);
+                break;
+            case 4:
+                ATM.transferFunds(currUser, scan);
+                break;
+            case 5:
+                scan.nextLine();
+                break;
+        }
+
+        //redisplay this menu unless the user wants to quit
+        if (userChoice != 5) {
+            ATM.printUserMenu(currUser, scan);
+        }
     }
 
     public static void showTransactionHistory(User currUser, Scanner scan) {
@@ -75,7 +99,7 @@ public class ATM {
         currUser.printAccountTransactionHistory(thisAccount);
     }
 
-    public static void depositFund(User currUser, Scanner scan) {
+    public static void depositFunds(User currUser, Scanner scan) {
         int toAccount;
         double amount;
         double accountBalance;
