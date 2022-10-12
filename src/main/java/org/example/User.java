@@ -25,7 +25,6 @@ public class User {
             throw new RuntimeException(e);
         }
 
-        //ToDo list: make this function
         this.uuid = dukeBank.getNewUserUUID();
 
         this.accounts = new ArrayList<Account>();

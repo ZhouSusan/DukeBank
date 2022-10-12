@@ -1,4 +1,6 @@
 package org.example;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -64,4 +66,20 @@ public class Bank {
 
         return accountUUID;
     }
+
+    public void addAccount(Account account) {
+        this.accounts.add(account);
+    }
+
+    public User addUser(String firstName, String lastName, String pinNumber, String dateOfBirth, String socialSecurityNumber) {
+        User newUser = new User(firstName, lastName, pinNumber, dateOfBirth, socialSecurityNumber, this);
+        this.users.add(newUser);
+
+        Account newAccount = new Account("Savings", newUser, this);
+        newUser.addAccount(newAccount);
+        this.addAccount(newAccount);
+
+        return newUser;
+    }
+
 }
