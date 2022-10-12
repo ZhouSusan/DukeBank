@@ -36,4 +36,8 @@ public class Account {
         }
     }
 
+    public void addTransaction(double amount, String memo) {
+        Transaction newTransaction = new Transaction(amount, this, memo);
+        this.transactions.add(newTransaction);
+    }
 }
