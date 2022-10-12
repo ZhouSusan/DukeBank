@@ -61,4 +61,12 @@ public class User {
         }
         System.out.println();
     }
+
+    public int numAccounts() {
+        return this.accounts.size();
+    }
+
+    public void printAccountTransactionHistory(int accountIndex) {
+        this.accounts.get(accountIndex).getBalance();
+    }
 }

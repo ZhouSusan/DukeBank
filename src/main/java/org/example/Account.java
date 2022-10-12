@@ -19,7 +19,7 @@ public class Account {
         return this.uuid;
     }
 
-    private double getBalance() {
+    public double getBalance() {
         double balance = 0;
         for (Transaction t : this.transactions) {
             balance += t.getAmount();
