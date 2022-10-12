@@ -18,4 +18,8 @@ public class Transaction {
         this(amount, thisAccount);
         this.memo = memo;
     }
+
+    public double getAmount() {
+        return this.amount;
+    }
 }

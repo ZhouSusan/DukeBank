@@ -38,4 +38,25 @@ public class ATM {
 
         return authorizedUser;
     }
+
+    public static void printUserMenu(User currUser, Scanner scan) {
+        currUser.printAccountsSummary();
+        int userChoice;
+
+        do {
+            System.out.printf("Welcome %s, what would you like to do?\n", currUser.getFullName());
+            System.out.println("    1- Show account transaction history");
+            System.out.println("    2- Deposit");
+            System.out.println("    3- Withdraw");
+            System.out.println("    4- Transfer");
+            System.out.println("    5- Quit");
+            System.out.println();
+            System.out.print("Enter choice: ");
+            userChoice = scan.nextInt();
+
+            if(userChoice <1 || userChoice > 5) {
+                System.out.println("Invalid choice. Please choose a number between 1 - 5");
+            }
+        } while (userChoice <1 || userChoice > 5);
+    }
 }
