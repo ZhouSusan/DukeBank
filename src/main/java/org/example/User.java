@@ -29,7 +29,7 @@ public class User {
 
         this.accounts = new ArrayList<Account>();
 
-        System.out.printf("A new user has been created successfully.\n%s, %s with ID# %s");
+        System.out.printf("A new user has been created successfully.\n%s, %s with ID# %s", lastName, firstName, this.uuid);
     }
 
     public String getUUID() {
