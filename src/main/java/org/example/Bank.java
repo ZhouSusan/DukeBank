@@ -64,4 +64,16 @@ public class Bank {
 
         return accountUUID;
     }
+
+    public User addUser(String firstName, String lastName, String pin, String dateOfBirth, String socialSecurityNumber) {
+        User newUser = new User(firstName, lastName, pin, dateOfBirth, socialSecurityNumber, this);
+        this.users.add(newUser);
+
+        Account newAccount = new Account("Savings", newUser, this);
+        newUser.addAccount(newAccount);
+        //ToDo create addAccount()git addd
+        this.addAccount(newAccount);
+
+        return newUser;
+    }
 }
