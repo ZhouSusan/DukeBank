@@ -40,4 +40,11 @@ public class Account {
         Transaction newTransaction = new Transaction(amount, this, memo);
         this.transactions.add(newTransaction);
     }
+
+    public void printTransactionHistory() {
+        System.out.printf("\nTransaction history fot account %s\n", this.uuid);
+        for (int t = this.transactions.size()-1; t >= 0; t--) {
+            System.out.println(this.transactions.get(t).getSummaryLine());
+        }
+    }
 }

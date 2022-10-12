@@ -67,7 +67,7 @@ public class User {
     }
 
     public void printAccountTransactionHistory(int accountIndex) {
-        this.accounts.get(accountIndex).getBalance();
+        this.accounts.get(accountIndex).printTransactionHistory();
     }
 
     public double getAccountBalance(int accountIndex) {
