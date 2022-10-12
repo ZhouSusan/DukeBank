@@ -59,4 +59,19 @@ public class ATM {
             }
         } while (userChoice <1 || userChoice > 5);
     }
+
+    public static void showTransactionHistory(User currUser, Scanner scan) {
+        int thisAccount;
+
+        do {
+            System.out.printf("Enter the number (1-%d) of the account whose transactions you want to see: ", currUser.numAccounts());
+            //Since we start at a zero based index, subtract one to whatever the user is enters
+            thisAccount = scan.nextInt() - 1;
+            if (thisAccount < 0 || thisAccount >= currUser.numAccounts()) {
+                System.out.println("Invalid account.Please try again.");
+            }
+        } while (thisAccount < 0 || thisAccount >= currUser.numAccounts());
+
+        currUser.printAccountTransactionHistory(thisAccount);
+    }
 }
