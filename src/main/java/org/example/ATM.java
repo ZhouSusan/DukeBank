@@ -84,10 +84,10 @@ public class ATM {
         do {
             System.out.printf("Enter the number (1-d%) of the accounts\n to deposit in: ", currUser.numAccounts());
             toAccount = scan.nextInt();
-            if (toAccount < 0 || toAccount > currUser.numAccounts()) {
+            if (toAccount < 0 || toAccount >= currUser.numAccounts()) {
                 System.out.println("Invalid account. Please try again.");
             }
-        } while(toAccount < 0 || toAccount > currUser.numAccounts());
+        } while(toAccount < 0 || toAccount >= currUser.numAccounts());
 
         accountBalance = currUser.getAccountBalance(toAccount);
 
@@ -104,6 +104,40 @@ public class ATM {
         memo = scan.nextLine();
 
         currUser.addAccountTransaction(toAccount, amount, memo);
+    }
+
+    public static void withdrawFunds(User currUser, Scanner scan) {
+        int fromAccount;
+        double amount;
+        double accountBalance;
+        String memo;
+
+        do {
+            System.out.printf("Enter the number (1-d%) of the accounts\n to deposit in: ", currUser.numAccounts());
+            fromAccount = scan.nextInt();
+            if (fromAccount < 0 || fromAccount >= currUser.numAccounts()) {
+                System.out.println("Invalid account. Please try again.");
+            }
+        } while(fromAccount < 0 || fromAccount >= currUser.numAccounts());
+
+        accountBalance = currUser.getAccountBalance(fromAccount);
+
+        do {
+            System.out.printf("Enter the amount to withdraw from: (maximum $%.02f)", accountBalance);
+            amount = scan.nextDouble();
+            if (amount < 0) {
+                System.out.println("Something went wrong. Amount must be greater than zero.");
+            } else if (amount > accountBalance) {
+                System.out.printf("Amount must not be greater than\n " +
+                        "balance of $%.02f.\n", accountBalance);
+            }
+        } while (amount < 0);
+
+        scan.nextLine();
+        System.out.print("Enter a memo for this transaction: ");
+        memo = scan.nextLine();
+
+        currUser.addAccountTransaction(fromAccount, -1*amount, memo);
     }
 
     public static void transferFunds(User currUser, Scanner scan) {
