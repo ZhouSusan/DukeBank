@@ -78,7 +78,6 @@ public class ATM {
                 break;
         }
 
-        //redisplay this menu unless the user wants to quit
         if (userChoice != 5) {
             ATM.printUserMenu(currUser, scan);
         }
